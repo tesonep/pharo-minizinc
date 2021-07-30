@@ -21,11 +21,14 @@ MzSolver >> extractVariables [
 
 	| uniqueVariables |
 	variables := Dictionary new.
-	uniqueVariables := constraints flatCollect: [ :aConstraint | aConstraint variables ] as: Set.
+	uniqueVariables := constraints
+		                   flatCollect: [ :aConstraint | 
+		                   aConstraint variables ]
+		                   as: Set.
 
 	uniqueVariables do: [ :each | 
-		each name: 'v' , variables size asString.
-		variables at: each name put: each ]. 
+		each name ifNil: [ each name: 'v' , variables size asString ].
+		variables at: each name put: each ]
 ]
 
 { #category : #generating }
@@ -60,8 +63,8 @@ MzSolver >> generateScript [
 					  nextPutAll: e name;
 					  nextPutAll: '=\(';
 					  nextPutAll: e name;
-					  nextPutAll: ')';
-					  nextPutAll: '\n ' ].
+					  nextPutAll: ')'. ]
+				separatedBy: [ s nextPutAll: '\n ' ].
 
 		  s
 			  nextPutAll: '"];';
@@ -79,7 +82,11 @@ MzSolver >> initialize [
 MzSolver >> parseResults: aString [
 
 	| strings name value |
-	(aString lines allButLast: 2) do: [ :each | 
+	
+	aString trimBoth = '=====UNSATISFIABLE====='
+		ifTrue: [ self error: aString ].
+	
+	aString lines allButLast do: [ :each | 
 		strings := each trimBoth substrings: '='.
 		name := strings at: 1.
 		value := NumberParser parse: (strings at: 2).

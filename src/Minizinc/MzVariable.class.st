@@ -1,6 +1,6 @@
 Class {
 	#name : #MzVariable,
-	#superclass : #Object,
+	#superclass : #MzValue,
 	#instVars : [
 		'type',
 		'value',
@@ -26,16 +26,6 @@ MzVariable >> name [
 MzVariable >> name: aString [ 
 	
 	name := aString 
-]
-
-{ #category : #operations }
-MzVariable >> notEquals: aMzVariable [ 
-	
-	^ MzConstraint new
-		leftOperand: self;
-		operation: '!=';
-		rightOperand: aMzVariable;
-		yourself
 ]
 
 { #category : #generating }

@@ -1,6 +1,6 @@
 Class {
 	#name : #MzConstraint,
-	#superclass : #Object,
+	#superclass : #MzValue,
 	#instVars : [
 		'leftOperand',
 		'operation',
