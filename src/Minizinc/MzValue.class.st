@@ -5,6 +5,16 @@ Class {
 }
 
 { #category : #operations }
+MzValue >> * anOperand [ 
+
+	^ MzConstraint new
+		  leftOperand: self;
+		  operation: '*';
+		  rightOperand: anOperand asMzValue;
+		  yourself
+]
+
+{ #category : #operations }
 MzValue >> + anOperand [ 
 
 	^ MzConstraint new
@@ -22,6 +32,26 @@ MzValue >> - anOperand [
 		  operation: '-';
 		  rightOperand: anOperand asMzValue;
 		  yourself
+]
+
+{ #category : #operations }
+MzValue >> / anOperand [ 
+
+	^ MzConstraint new
+		  leftOperand: self;
+		  operation: '/';
+		  rightOperand: anOperand asMzValue;
+		  yourself
+]
+
+{ #category : #operations }
+MzValue >> and: aMzConstraint [ 
+
+	^ MzConstraint new
+		leftOperand: self;
+		operation: '/\';
+		rightOperand: aMzConstraint asMzValue;
+		yourself
 ]
 
 { #category : #converting }
