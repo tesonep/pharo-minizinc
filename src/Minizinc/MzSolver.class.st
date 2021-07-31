@@ -86,7 +86,7 @@ MzSolver >> parseResults: aString [
 	aString trimBoth = '=====UNSATISFIABLE====='
 		ifTrue: [ self error: aString ].
 	
-	aString lines allButLast do: [ :each | 
+	(aString lines allButLast: 2) do: [ :each | 
 		strings := each trimBoth substrings: '='.
 		name := strings at: 1.
 		value := NumberParser parse: (strings at: 2).
@@ -99,6 +99,8 @@ MzSolver >> satisfy [
 	
 	self extractVariables.
 	script := self generateScript.
-	result := MzRunner new runScript: script.
+	result := MzRunner new 
+		engine: 'or-tools';
+		runScript: script.
 	self parseResults: result
 ]

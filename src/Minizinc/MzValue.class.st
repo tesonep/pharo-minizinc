@@ -24,6 +24,16 @@ MzValue >> - anOperand [
 		  yourself
 ]
 
+{ #category : #operations }
+MzValue >> and: anOperand [
+ 
+	^ MzConstraint new
+		  leftOperand: self;
+		  operation: '/\';
+		  rightOperand: anOperand asMzValue;
+		  yourself
+]
+
 { #category : #converting }
 MzValue >> asMzValue [
 	^ self

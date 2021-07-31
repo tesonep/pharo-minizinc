@@ -1,6 +1,6 @@
 Class {
 	#name : #MzConstant,
-	#superclass : #Object,
+	#superclass : #MzValue,
 	#instVars : [
 		'value'
 	],
