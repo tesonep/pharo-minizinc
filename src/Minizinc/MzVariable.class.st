@@ -34,6 +34,16 @@ MzVariable >> printMinizinc [
 	^ name 
 ]
 
+{ #category : #generating }
+MzVariable >> printOn: aStream [
+
+	super printOn: aStream.
+	aStream
+		nextPutAll: '(';
+		nextPutAll: name asString;
+		nextPutAll: ')'
+]
+
 { #category : #accessing }
 MzVariable >> type [
 

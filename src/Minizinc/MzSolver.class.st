@@ -83,8 +83,8 @@ MzSolver >> parseResults: aString [
 
 	| strings name value |
 	
-	aString trimBoth = '=====UNSATISFIABLE====='
-		ifTrue: [ self error: aString ].
+	aString lines first trimBoth = '=====UNSATISFIABLE====='
+		ifTrue: [ MzUnsatisfiable signal: aString ].
 	
 	(aString lines allButLast: 2) do: [ :each | 
 		strings := each trimBoth substrings: '='.
