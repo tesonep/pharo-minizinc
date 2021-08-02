@@ -1,8 +1,23 @@
 Class {
 	#name : #MzRunner,
 	#superclass : #Object,
+	#instVars : [
+		'engine'
+	],
 	#category : #'Minizinc-Bindings'
 }
+
+{ #category : #accessing }
+MzRunner >> engine [
+
+	^ engine
+]
+
+{ #category : #accessing }
+MzRunner >> engine: anObject [
+
+	engine := anObject
+]
 
 { #category : #private }
 MzRunner >> ensureWorkingDirectory [
@@ -26,12 +41,18 @@ MzRunner >> generateScriptFile: aString [
 { #category : #running }
 MzRunner >> run: anInputFile [
 
+	| arguments |
+	arguments := engine ifNil: [ #(  ) ] ifNotNil: [ { '--solver'. engine } ].
+	arguments := arguments copyWith: anInputFile resolve fullName.
+
 	OSSUnixSubprocess new
 		command: 'minizinc';
-		arguments: { anInputFile resolve fullName };
+		arguments: arguments;
 		workingDirectory: anInputFile parent resolve fullName;
 		redirectStdout;
-		runAndWaitOnExitDo: [ :process :outString | ^ outString withInternalLineEndings ]
+		redirectStderr;
+		runAndWaitOnExitDo: [ :process :outString :errString | 
+			^ outString withInternalLineEndings , errString withInternalLineEndings ]
 ]
 
 { #category : #running }

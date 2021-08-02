@@ -45,13 +45,13 @@ MzValue >> / anOperand [
 ]
 
 { #category : #operations }
-MzValue >> and: aMzConstraint [ 
-
+MzValue >> and: anOperand [
+ 
 	^ MzConstraint new
-		leftOperand: self;
-		operation: '/\';
-		rightOperand: aMzConstraint asMzValue;
-		yourself
+		  leftOperand: self;
+		  operation: '/\';
+		  rightOperand: anOperand asMzValue;
+		  yourself
 ]
 
 { #category : #converting }
