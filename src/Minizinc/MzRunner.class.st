@@ -41,9 +41,12 @@ MzRunner >> generateScriptFile: aString [
 { #category : #running }
 MzRunner >> run: anInputFile [
 
-	| arguments |
+	| arguments totalOut totalError |
 	arguments := engine ifNil: [ #(  ) ] ifNotNil: [ { '--solver'. engine } ].
 	arguments := arguments copyWith: anInputFile resolve fullName.
+
+	totalOut := String new writeStream.
+	totalError := String new writeStream.
 
 	OSSUnixSubprocess new
 		command: 'minizinc';
@@ -51,8 +54,18 @@ MzRunner >> run: anInputFile [
 		workingDirectory: anInputFile parent resolve fullName;
 		redirectStdout;
 		redirectStderr;
-		runAndWaitOnExitDo: [ :process :outString :errString | 
-			^ outString withInternalLineEndings , errString withInternalLineEndings ]
+		runAndWaitPollingEvery: (Delay forMilliseconds: 50) 
+		doing: [ :process :outStream :errStream |  
+			| read | 
+			read := outStream upToEnd.
+			totalOut nextPutAll: read.
+			read := errStream upToEnd.
+			totalError nextPutAll: read.
+		]
+		onExitDo: [ :process :outStream :errStream  |
+			process closeAndCleanStreams.
+			^ totalOut contents withInternalLineEndings , totalError contents withInternalLineEndings
+		]
 ]
 
 { #category : #running }
