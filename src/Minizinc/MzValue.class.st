@@ -110,12 +110,12 @@ MzValue >> lowerThan: aMzVariable [
 ]
 
 { #category : #operations }
-MzValue >> notEquals: aMzVariable [ 
+MzValue >> notEquals: anOperand [ 
 	
 	^ MzConstraint new
 		leftOperand: self;
 		operation: '!=';
-		rightOperand: aMzVariable;
+		rightOperand: anOperand asMzValue;
 		yourself
 ]
 
