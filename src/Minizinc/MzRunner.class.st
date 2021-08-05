@@ -63,12 +63,18 @@ MzRunner >> initialize [
 { #category : #running }
 MzRunner >> run: anInputFile [
 
-	| arguments |
-	
-	arguments := engine ifNil: [ #(  ) ] ifNotNil: [ { '--solver'. engine } ].
-	arguments := arguments copyWith: anInputFile resolve fullName.
+	| arguments fznScript |
+	fznScript := anInputFile withExtension: 'fzn'.
+	arguments := engine
+		ifNil: [ #(  ) ]
+		ifNotNil: [ { '--solver'. engine } ].
+	arguments := arguments copyWith: anInputFile fullName.
+	arguments := arguments, { 
+		'--output-fzn-to-file'.
+		fznScript fullName }.
 
-	^ self runMinizincWithArguments: arguments inWorkingDirectory: anInputFile parent
+	^ [ self runMinizincWithArguments: arguments inWorkingDirectory: anInputFile parent]
+			ensure: [ fznScript ensureDelete ] 
 	
 
 ]
@@ -111,19 +117,14 @@ MzRunner >> runMinizincWithArguments: arguments inWorkingDirectory: aWorkingDire
 { #category : #running }
 MzRunner >> runScript: aString [
 
-	| aFileReference fznScript |
+	| aFileReference |
 	aFileReference := self generateScriptFile: aString.
-
-	^ [ 
-	  [ 
-	  fznScript := self compile: aFileReference.
-	  self run: fznScript ]
+	^ [ self run: aFileReference ]
 		  on: OSSTimeout
 		  do: [ :e | 
 			  MzTimeoutException new
 				  script: aString;
-				  signal ] ] ensure: [ 
-		  fznScript ifNotNil: [ fznScript ensureDelete ] ]
+				  signal ]
 ]
 
 { #category : #accessing }

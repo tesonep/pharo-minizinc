@@ -90,8 +90,8 @@ MzSolver >> parseResults: aString [
 	
 	(aString lines allButLast: 2) do: [ :each | 
 		strings := each trimBoth substrings: '='.
-		name := (strings at: 1) trimBoth.
-		value := NumberParser parse: (strings at: 2) trimBoth allButLast.
+		name := strings at: 1.
+		value := NumberParser parse: (strings at: 2).
 
 		(variables at: name) value: value ]
 ]
