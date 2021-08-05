@@ -40,10 +40,45 @@ t=1
 ]
 
 { #category : #tests }
+MzRunningTest >> loopingScript [
+
+	^ '
+var int: t107_value;
+
+constraint ((t107_value >= -1073741824) /\ (t107_value <= 1073741823));
+
+constraint (t107_value != 0);
+
+solve satisfy;
+output ["t107_value=\(t107_value)"];'
+]
+
+{ #category : #tests }
+MzRunningTest >> runCaseManaged [ 
+	
+	^ self runCase
+]
+
+{ #category : #tests }
+MzRunningTest >> testAbortNeverEndingScript [
+
+	| runner result |
+	runner := MzRunner new.
+	runner timeout: 10 seconds.
+
+	self
+		should: [ result := runner runScript: self loopingScript ]
+		raise: MzTimeoutException
+		withExceptionDo: [ :e | self assert: e script equals: self loopingScript ]
+]
+
+{ #category : #tests }
 MzRunningTest >> testRunScript [
 
 	| runner result |
 	runner := MzRunner new.
+	runner engine: 'gecode'.
+	
 	result := runner runScript: self coloringAustralia.
 	
 	self assert: result equals: self expectedAustralia
@@ -84,4 +119,18 @@ MzRunningTest >> testSolvingAustralia [
 	self assert: (sa value ~= v value).
 	self assert: (q value ~= nsw value).
 	self assert: (nsw value ~= v value).
+]
+
+{ #category : #tests }
+MzRunningTest >> testWhenAbortingAScriptDeleteFiles [
+
+	| runner result |
+	runner := MzRunner new.
+	runner timeout: 10 seconds.
+
+	self
+		should: [ result := runner runScript: self loopingScript ]
+		raise: MzTimeoutException.
+		
+	self assert: (FileLocator temp allChildrenMatching: '*.fzn') isEmpty
 ]
