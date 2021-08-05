@@ -16,9 +16,8 @@ MzRunner >> compile: anInputFile [
 	fznFile := anInputFile withExtension: 'fzn'.
 	
 	arguments := { '-c'. '--output-to-file'. fznFile resolve fullName. anInputFile resolve fullName }.
-
-	^ self runMinizincWithArguments: arguments inWorkingDirectory: anInputFile parent
-	
+	self runMinizincWithArguments: arguments inWorkingDirectory: anInputFile parent.
+	^ fznFile
 
 ]
 
