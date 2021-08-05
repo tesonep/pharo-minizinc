@@ -5,7 +5,8 @@ Class {
 		'constraints',
 		'script',
 		'result',
-		'variables'
+		'variables',
+		'timeout'
 	],
 	#category : #Minizinc
 }
@@ -75,7 +76,8 @@ MzSolver >> generateScript [
 MzSolver >> initialize [
 
 	super initialize.
-	constraints := OrderedCollection new
+	constraints := OrderedCollection new.
+	timeout := 10 seconds
 ]
 
 { #category : #parsing }
@@ -100,7 +102,20 @@ MzSolver >> satisfy [
 	self extractVariables.
 	script := self generateScript.
 	result := MzRunner new 
+		timeout: timeout;
 		engine: 'or-tools';
 		runScript: script.
 	self parseResults: result
+]
+
+{ #category : #accessing }
+MzSolver >> timeout [
+
+	^ timeout
+]
+
+{ #category : #accessing }
+MzSolver >> timeout: anObject [
+
+	timeout := anObject
 ]
