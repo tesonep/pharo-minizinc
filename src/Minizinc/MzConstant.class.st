@@ -14,6 +14,11 @@ MzConstant >> printMinizinc [
 ]
 
 { #category : #accessing }
+MzConstant >> value [
+	^ value
+]
+
+{ #category : #accessing }
 MzConstant >> value: anInteger [ 
 	value := anInteger
 ]
