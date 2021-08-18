@@ -17,6 +17,12 @@ MzVariable class >> type: aString [
 		yourself
 ]
 
+{ #category : #evaluating }
+MzVariable >> evaluate [
+	
+	^ self value
+]
+
 { #category : #accessing }
 MzVariable >> name [
 	^ name

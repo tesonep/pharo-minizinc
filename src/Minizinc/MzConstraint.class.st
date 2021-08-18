@@ -9,10 +9,22 @@ Class {
 	#category : #'Minizinc-Bindings'
 }
 
+{ #category : #evaluating }
+MzConstraint >> evaluate [
+	
+	^ leftOperand evaluate perform: operation asSymbol with: rightOperand evaluate
+]
+
 { #category : #accessing }
 MzConstraint >> leftOperand: aMzVariable [ 
 	
 	leftOperand := aMzVariable 
+]
+
+{ #category : #accessing }
+MzConstraint >> mzConstraintOnInterpreter: interpreter [
+	
+	^ self
 ]
 
 { #category : #accessing }

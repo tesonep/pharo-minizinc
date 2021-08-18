@@ -7,6 +7,12 @@ Class {
 	#category : #Minizinc
 }
 
+{ #category : #evaluating }
+MzConstant >> evaluate [
+	
+	^ value
+]
+
 { #category : #generating }
 MzConstant >> printMinizinc [
 	
