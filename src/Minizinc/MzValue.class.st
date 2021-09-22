@@ -96,11 +96,12 @@ MzValue >> asMzValue [
 ]
 
 { #category : #operations }
-MzValue >> div: anOperand [ 
-	
+MzValue >> div: anOperand [
+
 	^ MzConstraint new
 		  leftOperand: self;
 		  operation: 'div';
+		  selector: #//;
 		  rightOperand: anOperand asMzValue;
 		  yourself
 ]

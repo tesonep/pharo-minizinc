@@ -17,6 +17,13 @@ MzSolver >> addConstraint: aMzConstraint [
 	constraints add: aMzConstraint 
 ]
 
+{ #category : #accessing }
+MzSolver >> at: aString ifAbsent: aFullBlockClosure [ 
+	
+	variables at: aString ifAbsent: [ ^ aFullBlockClosure value ].
+	^ (variables at: aString) value ifNil: aFullBlockClosure
+]
+
 { #category : #generating }
 MzSolver >> extractVariables [
 
@@ -72,12 +79,13 @@ MzSolver >> generateScript [
 			  lf ]
 ]
 
-{ #category : #initialization }
+{ #category : #generating }
 MzSolver >> initialize [
 
 	super initialize.
 	constraints := OrderedCollection new.
-	timeout := 10 seconds
+	timeout := 10 seconds.
+	variables := Dictionary new
 ]
 
 { #category : #parsing }
