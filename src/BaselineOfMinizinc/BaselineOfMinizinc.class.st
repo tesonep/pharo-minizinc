@@ -9,6 +9,14 @@ BaselineOfMinizinc >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ 
-		spec package: 'Minizinc'.
-		spec package: 'Minizinc-Tests' with: [ spec requires: #('Minizinc') ] ]
+		spec
+			baseline: 'OSSubprocess'
+			with: [ 
+			spec repository: 'github://pharo-contributions/OSSubprocess' ].
+		spec
+			package: 'Minizinc'
+			with: [ spec requires: #( 'OSSubprocess' ) ].
+		spec
+			package: 'Minizinc-Tests'
+			with: [ spec requires: #( 'Minizinc' ) ] ]
 ]
