@@ -32,13 +32,9 @@ output ["wa=\(wa)\t nt=\(nt)\t sa=\(sa)\n",
 { #category : #tests }
 MzRunningTest >> expectedAustralia [
 
-	^ 'wa = 3;
-nt = 2;
-sa = 1;
-q = 3;
-nsw = 2;
-v = 3;
-t = 1;
+	^ 'wa=3	 nt=2	 sa=1
+q=3	 nsw=2	 v=3
+t=1
 ----------
 '
 ]
