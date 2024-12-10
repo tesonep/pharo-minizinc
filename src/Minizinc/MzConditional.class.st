@@ -1,57 +1,59 @@
 Class {
-	#name : #MzConditional,
-	#superclass : #MzValue,
+	#name : 'MzConditional',
+	#superclass : 'MzValue',
 	#instVars : [
 		'if',
 		'ifTrue',
 		'ifFalse'
 	],
-	#category : #'Minizinc-Bindings'
+	#category : 'Minizinc-Bindings',
+	#package : 'Minizinc',
+	#tag : 'Bindings'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConditional >> if [
 
 	^ if
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConditional >> if: anObject [
 
 	if := anObject asMzValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConditional >> ifFalse [
 
 	^ ifFalse
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConditional >> ifFalse: anObject [
 
 	ifFalse := anObject asMzValue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConditional >> ifTrue [
 
 	^ ifTrue
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConditional >> ifTrue: anObject [
 
 	ifTrue := anObject asMzValue
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 MzConditional >> printMinizinc [
 	
 	^ '(if' , if printMinizinc , ' then ' , ifTrue printMinizinc , ' else ', ifFalse printMinizinc , ' endif)'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConditional >> variables [
 
 	^ if variables, ifTrue variables, ifFalse variables

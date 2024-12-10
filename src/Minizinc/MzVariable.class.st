@@ -1,15 +1,17 @@
 Class {
-	#name : #MzVariable,
-	#superclass : #MzValue,
+	#name : 'MzVariable',
+	#superclass : 'MzValue',
 	#instVars : [
 		'type',
 		'value',
 		'name'
 	],
-	#category : #'Minizinc-Bindings'
+	#category : 'Minizinc-Bindings',
+	#package : 'Minizinc',
+	#tag : 'Bindings'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 MzVariable class >> type: aString [ 
 	
 	^ self new
@@ -17,30 +19,30 @@ MzVariable class >> type: aString [
 		yourself
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 MzVariable >> evaluate [
 	
 	^ self value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzVariable >> name [
 	^ name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzVariable >> name: aString [ 
 	
 	name := aString 
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzVariable >> printMinizinc [
 	
 	^ name 
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzVariable >> printOn: aStream [
 
 	super printOn: aStream.
@@ -50,31 +52,49 @@ MzVariable >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
+MzVariable >> removeRedundances [
+
+	^ self
+]
+
+{ #category : 'printing' }
+MzVariable >> sanitize [
+	
+	^ self
+]
+
+{ #category : 'accessing' }
+MzVariable >> toString [
+
+	^ 'Var(' , name , ')'
+]
+
+{ #category : 'accessing' }
 MzVariable >> type [
 
 	^ type
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzVariable >> type: anObject [
 
 	type := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzVariable >> value [
 
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzVariable >> value: anObject [
 
 	value := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzVariable >> variables [
 	
 	^ { self }

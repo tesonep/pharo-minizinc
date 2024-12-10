@@ -1,6 +1,6 @@
-Extension { #name : #Number }
+Extension { #name : 'Number' }
 
-{ #category : #'*Minizinc' }
+{ #category : '*Minizinc' }
 Number >> asMzValue [
 
 	^ MzConstant new

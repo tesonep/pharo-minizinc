@@ -1,10 +1,12 @@
 Class {
-	#name : #MzValue,
-	#superclass : #Object,
-	#category : #'Minizinc-Bindings'
+	#name : 'MzValue',
+	#superclass : 'Object',
+	#category : 'Minizinc-Bindings',
+	#package : 'Minizinc',
+	#tag : 'Bindings'
 }
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> * anOperand [ 
 
 	^ MzConstraint new
@@ -14,7 +16,7 @@ MzValue >> * anOperand [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> + anOperand [ 
 
 	^ MzConstraint new
@@ -24,7 +26,7 @@ MzValue >> + anOperand [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> - anOperand [ 
 
 	^ MzConstraint new
@@ -34,7 +36,7 @@ MzValue >> - anOperand [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> / anOperand [ 
 
 	^ MzConstraint new
@@ -44,7 +46,7 @@ MzValue >> / anOperand [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> // anOperand [ 
 	
 	"(-x div y) - if (-9 div 4) < 0 then 1 else 0 endif;"
@@ -56,7 +58,7 @@ MzValue >> // anOperand [
 			yourself)
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> \\ anOperand [ 
 	
 	"abs(abs((y * abs((x div y) - x // y))) - abs(x))
@@ -71,7 +73,7 @@ MzValue >> \\ anOperand [
 				yourself)
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> abs [
 
 	^ MzUnaryExpression new
@@ -80,7 +82,7 @@ MzValue >> abs [
 		yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> and: anOperand [
  
 	^ MzConstraint new
@@ -90,12 +92,34 @@ MzValue >> and: anOperand [
 		  yourself
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 MzValue >> asMzValue [
 	^ self
 ]
 
-{ #category : #operations }
+{ #category : 'accessing' }
+MzValue >> bitAnd: aMzConstraint [ 
+
+	"TODO: Implement me"
+	^ MzConstraint new
+		leftOperand: self;
+		operation: '/\';
+		rightOperand: aMzConstraint asMzValue;
+		yourself
+]
+
+{ #category : 'accessing' }
+MzValue >> bitOr: aMzConstraint [ 
+
+	"TODO: Implement me"
+	^ MzConstraint new
+		leftOperand: self;
+		operation: '\/';
+		rightOperand: aMzConstraint asMzValue;
+		yourself
+]
+
+{ #category : 'operations' }
 MzValue >> div: anOperand [
 
 	^ MzConstraint new
@@ -106,7 +130,7 @@ MzValue >> div: anOperand [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> equals: anOperand [
 
 	^ MzConstraint new
@@ -116,7 +140,7 @@ MzValue >> equals: anOperand [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> greaterOrEquals: aMzVariable [
 
 	^ MzConstraint new
@@ -126,7 +150,7 @@ MzValue >> greaterOrEquals: aMzVariable [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> greaterThan: aMzVariable [ 
 	
 	^ MzConstraint new
@@ -136,7 +160,7 @@ MzValue >> greaterThan: aMzVariable [
 		yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> lessOrEquals: aMzVariable [ 
 	
 	^ MzConstraint new
@@ -146,7 +170,7 @@ MzValue >> lessOrEquals: aMzVariable [
 		yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> lowerThan: aMzVariable [ 
 	
 	^ MzConstraint new
@@ -156,7 +180,7 @@ MzValue >> lowerThan: aMzVariable [
 		yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> mod: anOperand [ 
 	
 	^ MzConstraint new
@@ -166,7 +190,7 @@ MzValue >> mod: anOperand [
 		  yourself
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> notEquals: anOperand [
 
 	^ (MzConstraint new
@@ -180,7 +204,7 @@ MzValue >> notEquals: anOperand [
 			   yourself)
 ]
 
-{ #category : #operations }
+{ #category : 'operations' }
 MzValue >> or: aMzConstraint [ 
 
 	^ MzConstraint new

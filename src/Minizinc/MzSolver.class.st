@@ -1,6 +1,6 @@
 Class {
-	#name : #MzSolver,
-	#superclass : #Object,
+	#name : 'MzSolver',
+	#superclass : 'Object',
 	#instVars : [
 		'constraints',
 		'script',
@@ -8,23 +8,24 @@ Class {
 		'variables',
 		'timeout'
 	],
-	#category : #Minizinc
+	#category : 'Minizinc',
+	#package : 'Minizinc'
 }
 
-{ #category : #'adding constraints' }
+{ #category : 'adding constraints' }
 MzSolver >> addConstraint: aMzConstraint [ 
 	
 	constraints add: aMzConstraint 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzSolver >> at: aString ifAbsent: aFullBlockClosure [ 
 	
 	variables at: aString ifAbsent: [ ^ aFullBlockClosure value ].
 	^ (variables at: aString) value ifNil: aFullBlockClosure
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzSolver >> extractVariables [
 
 	| uniqueVariables |
@@ -39,7 +40,7 @@ MzSolver >> extractVariables [
 		variables at: each name put: each ]
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzSolver >> generateScript [
 
 	^ String streamContents: [ :s | 
@@ -79,7 +80,7 @@ MzSolver >> generateScript [
 			  lf ]
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzSolver >> initialize [
 
 	super initialize.
@@ -88,7 +89,7 @@ MzSolver >> initialize [
 	variables := Dictionary new
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 MzSolver >> parseResults: aString [
 
 	| strings name value |
@@ -104,7 +105,13 @@ MzSolver >> parseResults: aString [
 		(variables at: name) value: value ]
 ]
 
-{ #category : #solving }
+{ #category : 'adding constraints' }
+MzSolver >> result [
+
+	^ result
+]
+
+{ #category : 'solving' }
 MzSolver >> satisfy [
 	
 	self extractVariables.
@@ -116,13 +123,13 @@ MzSolver >> satisfy [
 	self parseResults: result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzSolver >> timeout [
 
 	^ timeout
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzSolver >> timeout: anObject [
 
 	timeout := anObject

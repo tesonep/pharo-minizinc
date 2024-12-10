@@ -1,14 +1,16 @@
 Class {
-	#name : #MzRunner,
-	#superclass : #Object,
+	#name : 'MzRunner',
+	#superclass : 'Object',
 	#instVars : [
 		'engine',
 		'timeout'
 	],
-	#category : #'Minizinc-Bindings'
+	#category : 'Minizinc-Bindings',
+	#package : 'Minizinc',
+	#tag : 'Bindings'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 MzRunner >> compile: anInputFile [
 
 	| arguments fznFile |
@@ -21,25 +23,25 @@ MzRunner >> compile: anInputFile [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzRunner >> engine [
 
 	^ engine
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzRunner >> engine: anObject [
 
 	engine := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MzRunner >> ensureWorkingDirectory [
 	
 	^ (FileLocator localDirectory / 'minizinc') ensureCreateDirectory
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 MzRunner >> generateScriptFile: aString [
 
 	| aFile |
@@ -52,7 +54,7 @@ MzRunner >> generateScriptFile: aString [
 	^ aFile
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MzRunner >> initialize [
 
 	super initialize.
@@ -60,7 +62,7 @@ MzRunner >> initialize [
 	timeout := 60 seconds
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MzRunner >> run: anInputFile [
 
 	| arguments fznScript |
@@ -79,7 +81,7 @@ MzRunner >> run: anInputFile [
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MzRunner >> runMinizincWithArguments: arguments inWorkingDirectory: aWorkingDirectory [
 
 	| osSubProcess totalOut totalError maxTime |
@@ -114,7 +116,7 @@ MzRunner >> runMinizincWithArguments: arguments inWorkingDirectory: aWorkingDire
 
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 MzRunner >> runScript: aString [
 
 	| aFileReference |
@@ -127,7 +129,7 @@ MzRunner >> runScript: aString [
 				  signal ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzRunner >> timeout: aDuration [ 
 	timeout := aDuration
 ]

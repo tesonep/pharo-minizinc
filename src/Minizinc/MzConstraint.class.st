@@ -1,70 +1,72 @@
 Class {
-	#name : #MzConstraint,
-	#superclass : #MzValue,
+	#name : 'MzConstraint',
+	#superclass : 'MzValue',
 	#instVars : [
 		'leftOperand',
 		'operation',
 		'rightOperand',
 		'selector'
 	],
-	#category : #'Minizinc-Bindings'
+	#category : 'Minizinc-Bindings',
+	#package : 'Minizinc',
+	#tag : 'Bindings'
 }
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 MzConstraint >> evaluate [
 	
 	^ leftOperand evaluate perform: self selector with: rightOperand evaluate
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 MzConstraint >> isConstant [
 	
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstraint >> leftOperand: aMzVariable [ 
 	
 	leftOperand := aMzVariable 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstraint >> mzConstraintOnInterpreter: interpreter [
 	
 	^ self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstraint >> operation: aString [ 
 	
 	operation := aString 
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzConstraint >> printMinizinc [
 	
 	^ '(' , leftOperand printMinizinc , ' ' , operation asString , ' ', rightOperand printMinizinc , ')'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstraint >> rightOperand: aMzVariable [ 
 	
 	rightOperand := aMzVariable 
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 MzConstraint >> selector [
 
 	^ selector ifNil: [operation asSymbol]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstraint >> selector: anObject [
 
 	selector := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstraint >> variables [
 	
 	^ leftOperand variables , rightOperand variables

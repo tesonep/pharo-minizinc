@@ -1,18 +1,19 @@
 Class {
-	#name : #MzTimeoutException,
-	#superclass : #Error,
+	#name : 'MzTimeoutException',
+	#superclass : 'Error',
 	#instVars : [
 		'script'
 	],
-	#category : #Minizinc
+	#category : 'Minizinc',
+	#package : 'Minizinc'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzTimeoutException >> script [
 	^ script
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzTimeoutException >> script: aString [ 
 	script := aString
 ]

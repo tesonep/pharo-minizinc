@@ -1,5 +1,6 @@
 Class {
-	#name : #MzUnsatisfiable,
-	#superclass : #Error,
-	#category : #Minizinc
+	#name : 'MzUnsatisfiable',
+	#superclass : 'Error',
+	#category : 'Minizinc',
+	#package : 'Minizinc'
 }

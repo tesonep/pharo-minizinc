@@ -1,35 +1,36 @@
 Class {
-	#name : #MzConstant,
-	#superclass : #MzValue,
+	#name : 'MzConstant',
+	#superclass : 'MzValue',
 	#instVars : [
 		'value'
 	],
-	#category : #Minizinc
+	#category : 'Minizinc',
+	#package : 'Minizinc'
 }
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 MzConstant >> evaluate [
 	
 	^ value
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzConstant >> printMinizinc [
 	
 	^ value asString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstant >> value [
 	^ value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstant >> value: anInteger [ 
 	value := anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzConstant >> variables [
 	
 	^ { }

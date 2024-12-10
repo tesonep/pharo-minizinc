@@ -1,44 +1,46 @@
 Class {
-	#name : #MzUnaryExpression,
-	#superclass : #MzValue,
+	#name : 'MzUnaryExpression',
+	#superclass : 'MzValue',
 	#instVars : [
 		'operation',
 		'operand'
 	],
-	#category : #'Minizinc-Bindings'
+	#category : 'Minizinc-Bindings',
+	#package : 'Minizinc',
+	#tag : 'Bindings'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzUnaryExpression >> operand [
 
 	^ operand
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzUnaryExpression >> operand: anObject [
 
 	operand := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzUnaryExpression >> operation [
 
 	^ operation
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzUnaryExpression >> operation: aString [ 
 	
 	operation := aString 
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 MzUnaryExpression >> printMinizinc [
 	
 	^ '(' , operation asString , '(', operand printMinizinc , '))'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MzUnaryExpression >> variables [
 	
 	^ operand variables
