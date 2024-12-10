@@ -124,6 +124,12 @@ MzSolver >> satisfy [
 ]
 
 { #category : 'accessing' }
+MzSolver >> script [
+
+	^ script
+]
+
+{ #category : 'accessing' }
 MzSolver >> timeout [
 
 	^ timeout

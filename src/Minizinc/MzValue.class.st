@@ -101,22 +101,24 @@ MzValue >> asMzValue [
 MzValue >> bitAnd: aMzConstraint [ 
 
 	"TODO: Implement me"
-	^ MzConstraint new
+	^ nil
+	"MzConstraint new
 		leftOperand: self;
 		operation: '/\';
 		rightOperand: aMzConstraint asMzValue;
-		yourself
+		yourself"
 ]
 
 { #category : 'accessing' }
 MzValue >> bitOr: aMzConstraint [ 
 
 	"TODO: Implement me"
-	^ MzConstraint new
+	^ nil
+	"MzConstraint new
 		leftOperand: self;
 		operation: '\/';
 		rightOperand: aMzConstraint asMzValue;
-		yourself
+		yourself"
 ]
 
 { #category : 'operations' }
