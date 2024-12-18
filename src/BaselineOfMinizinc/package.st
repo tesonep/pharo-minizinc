@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfMinizinc }
+Package { #name : 'BaselineOfMinizinc' }
